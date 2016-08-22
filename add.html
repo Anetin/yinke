@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <title>Add Comment</title>
+        <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="static/css/index.css"/>
+        <style>
+            #file0{
+                visibility: hidden;
+            }
+            .loadimg{
+                display: flex;
+                justify-content: center;
+            }
+            #img0{
+                /*margin: 0 1rem;*/
+                /*max-width: 16rem;*/
+                max-width: 16rem;
+                max-height: 10rem;
+            }
+        </style>
+    </head>
+    <body ng-app="addcommentApp">
+
+    <!-- <section class="navbar"> -->
+            <nav class="nav">
+              <a class="navbar-btn" href="#" onclick="window.history.go(-1)"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>返回</a>
+            </nav>
+    <!-- </section> -->
+
+    <section class="add-photo" >
+        <div class="add-wrap photos">
+
+            <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+
+            <p>拍摄</p>
+        </div>
+
+        <div class="add-wrap album" id="loadAlbum">
+            <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+
+            <p>相册</p>
+        </div>
+
+        <!-- <div ng-controller="selectphotoCtrl">
+            <a ng-click="choosePicMenu()">
+                <img src="static/img/cammer.png" ng-src="{{img}}">
+            </a>
+        </div> -->
+    </section>
+
+    <article>
+        <form action="">
+            <input type="file" name="file0" id="file0" multiple="multiple" />
+            <figure class="loadimg">
+                <img src="" id="img0" >
+            </figure>
+            <textarea class="form-control" id="comment" rows="6" placeholder="留下你独一无二的心得吧"></textarea>
+
+            <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#submitModal">提交</button>
+        </form>
+    </article>
+
+    <!-- Modal -->
+    <div class="modal fade" id="submitModal" style="top: 226px;" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">确认留言？</h4>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" id="commitComment" class="btn btn-primary">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+        <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script type="text/javascript" src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <!-- ionic/angularjs js -->
+        <script src="lib/ionic/js/ionic.bundle.js"></script>
+        <!-- <script type="text/javascript" src="static/js/iscroll-lite.js"></script> -->
+        <!-- <script type="text/javascript" src="static/js/index.js"></script> -->
+        <script type="text/javascript">
+
+        var size=$(window).width()/18;
+        console.log(size);
+        $('html').css('font-size',size);
+
+        var commitComment=$("#commitComment");
+        commitComment.on("click", function(e){
+            var comment=$("#comment").val();
+            // console.log($("#comment").val());
+            // alert(comment);
+        //     $.ajax({
+        //         url: "./new/comment",    //请求的url地址
+        //         dataType: "json",   //返回格式为json
+        //         async: true, //请求是否异步，默认为异步，这也是ajax重要特性
+        //         data: comment,    //参数值
+        //         type: "post",   //请求方式
+        //         beforeSend: function() {
+        //             //请求前的处理
+        //         },
+        //         success: function(req) {
+        //             //请求成功时处理
+        //             alert(1);
+        //         },
+        //         complete: function() {
+        //             //请求完成的处理
+        //         },
+        //         error: function() {
+        //             //请求出错处理
+        //         }
+        //     });
+
+        //     return ;
+        $('#submitModal').modal('hide');
+        });
+
+        $("#loadAlbum").on("click",function () {
+            $("#file0").click();
+        });
+        $("#file0").change(function(){
+            var objUrl = getObjectURL(this.files[0]) ;
+            console.log("objUrl = "+objUrl) ;
+            if (objUrl) {
+                $("#img0").attr("src", objUrl);
+            }
+        }) ;
+        //建立一個可存取到該file的url
+        function getObjectURL(file) {
+            var url = null ; 
+            if (window.createObjectURL!=undefined) { // basic
+                url = window.createObjectURL(file) ;
+            } else if (window.URL!=undefined) { // mozilla(firefox)
+                url = window.URL.createObjectURL(file) ;
+            } else if (window.webkitURL!=undefined) { // webkit or chrome
+                url = window.webkitURL.createObjectURL(file) ;
+            }
+            return url ;
+        }
+
+
+        angular.module('addcommentApp', ['ionic'])
+
+        .controller('selectphotoCtrl', function ($scope) {
+            $scope.data = {
+              showDelete: false
+            };
+
+            //定义选择照片的函数，
+            $scope.choosePicMenu = function() {
+                var type = 'gallery';
+                $ionicActionSheet.show({
+                    buttons: [
+                        { text: '拍照' },
+                        { text: '从相册选择' }
+                    ],
+                    titleText: '选择照片',
+                    cancelText: '取消',
+                    cancel: function() {
+                    },
+                    buttonClicked: function(index) {
+                        if(index == 0){
+                            type = 'camera';
+                        }else if(index == 1){
+                            type = 'gallery';
+                        }
+            　　　　　　　//Camera.getPicture(type)->根据选择的“选取图片”的方式进行选取
+                        Camera.getPicture(type).then(
+            　　　　　　　　　 //返回一个imageURI，记录了照片的路径
+                            function (imageURI) {
+                                $scope.me.image = imageURI;
+            　　　　　　　　　　　 //更新页面上的照片
+                                $scope.img = imageURI;
+                                $scope.$apply();
+                            },
+                            function (err) {
+                            });
+                        return true;
+                    }
+                });
+            };
+        });
+
+
+
+
+
+        </script>
+    </body>
+</html>

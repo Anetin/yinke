@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <title>我的足迹</title>
+        <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="static/css/map.css"/>
+    </head>
+    <body>
+
+            <nav class="nav">
+              <a class="navbar-btn" href="#" onclick="window.history.go(-1)"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>返回</a>
+            </nav>
+
+            <div id="allmap"></div>
+
+            <p class="title">我的足迹<span class="time">2014.03.12-2016.08.21</span></p>
+
+            <action class="map-wrap">
+                <ul class="map" id="mapList">
+                    <li class="map-item" id="list2">
+                        <div class="map-title active">
+                            <span class="glyphicon glyphicon-map-marker local-icon" aria-hidden="true"></span>
+                            <p class="time">2016.04.10</p>
+                            <h1 class="landscape">正义路</h1>
+                            <p class="place">北京</p>
+                        </div>
+
+                        <div class="scroll-item">
+                            <img class="comment-img" src="static/img/dfmz2.png" alt="" style="width: 4.5rem;">
+                            <div class="comment-body">
+                                <p class="comment">北京是个好玩的地方</p>
+                                <div class="user">
+                                    <img class="user-photo" src="static/img/user0.png" style="width: 1rem" alt="">
+                                    <span class="like"><span>99</span><span class="glyphicon glyphicon-heart like-icon" aria-hidden="true"></span></span>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="map-item" id="list0">
+                        <div class="map-title">
+                            <span class="glyphicon glyphicon-map-marker local-icon" aria-hidden="true"></span>
+                            <p class="time">2016.04.10</p>
+                            <h1 class="landscape">王府井大街</h1>
+                            <p class="place">北京</p>
+                        </div>
+
+                        <div class="scroll-item">
+                            <img class="comment-img" src="static/img/dfmz1.png" alt="" style="width: 4.5rem;">
+                            <div class="comment-body">
+                                <p class="comment">王府井大街，南起东长安街，北至中国美术馆，全长约1600米，是北京最有名的商业街。</p>
+                                <div class="user">
+                                    <img class="user-photo" src="static/img/user0.png" style="width: 1rem" alt="">
+                                    <span class="like"><span>99</span><span class="glyphicon glyphicon-heart like-icon" aria-hidden="true"></span></span>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="map-item" id="list1">
+                        <div class="map-title">
+                            <span class="glyphicon glyphicon-map-marker local-icon" aria-hidden="true"></span>
+                            <p class="time">2016.04.10</p>
+                            <h1 class="landscape">东华门</h1>
+                            <p class="place">北京</p>
+                        </div>
+
+                        <div class="scroll-item">
+                            <img class="comment-img" src="static/img/dfmz3.png" alt="" style="width: 4.5rem;">
+                            <div class="comment-body">
+                                <p class="comment">东华门是紫禁城东门，始建于明永乐十八年（1420年）。东华门东向，与西华门遥相对应</p>
+                                <div class="user">
+                                    <img class="user-photo" src="static/img/user0.png" style="width: 1rem" alt="">
+                                    <span class="like"><span>99</span><span class="glyphicon glyphicon-heart like-icon" aria-hidden="true"></span></span>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </action>
+
+
+
+
+
+
+        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=qsESCvQwgewn0R8WH0OTE0GjOoCBXCmM"></script>
+        <!-- ionic/angularjs js -->
+        <script src="lib/ionic/js/ionic.bundle.js"></script>
+        <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script type="text/javascript" src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <!-- <script type="text/javascript" src="static/js/iscroll-lite.js"></script> -->
+        <script type="text/javascript" src="static/js/map.js"></script>
+
+    </body>
+</html>
